@@ -3,6 +3,8 @@
 #include <vector>
 #include "task3.h"
 
+namespace {
+
 class Task3Test : public ::testing::Test
 {
 protected:
@@ -59,6 +61,23 @@ TEST_F(Task3Test, LessThan5Nodes) {
     std::vector<int> v = { 1, 2, 3, 4};
     list = FromVector(v);
     remove_every_fifth(list);
-    v = ToVector(list);
-    ASSERT_THAT(v, testing::ElementsAre(1, 2, 3, 4));
+    auto r = ToVector(list);
+    EXPECT_THAT(r, ::testing::ElementsAre(1, 2, 3, 4));
+}
+
+TEST_F(Task3Test, FiveNodes) {
+    std::vector<int> v = { 1, 2, 3, 4, 5};
+    list = FromVector(v);
+    remove_every_fifth(list);
+    auto r = ToVector(list);
+    EXPECT_THAT(r, ::testing::ElementsAre(1, 2, 3, 4));
+}
+
+TEST_F(Task3Test, TenNodes) {
+    std::vector<int> v = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    list = FromVector(v);
+    remove_every_fifth(list);
+    auto r = ToVector(list);
+    EXPECT_THAT(r, ::testing::ElementsAre(1, 2, 3, 4, 6, 7, 8, 9));
+}
 }

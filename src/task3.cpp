@@ -4,7 +4,7 @@ void remove_every_fifth(List* node) {
     int count = 0;
     List* prev = nullptr;
     while (node != nullptr) {
-        if (count < 5) {
+        if (count < 4) {
             count++;
             prev = node;
             node = node->next;
