@@ -57,7 +57,7 @@ TEST_F(Task3Test, EmptyList) {
     EXPECT_EQ(list, nullptr);
 }
 
-TEST_F(Task3Test, LessThan5Nodes) {
+TEST_F(Task3Test, LessThanFiveNodes) {
     std::vector<int> v = { 1, 2, 3, 4};
     list = FromVector(v);
     remove_every_fifth(list);
