@@ -15,15 +15,15 @@ protected:
     }
 
     void TearDown() override {
-        destruct_list(list);
+        destroy_list(list);
     }
 
     List* create_list(std::initializer_list<int> v) {
         List* head = nullptr;
         List* tail = nullptr;
-        for (auto i = v.begin(); i < v.end(); ++i) {
+        for (auto item : v) {
             List* node = new List();
-            node->payload = *i;
+            node->payload = item;
             node->next = nullptr;
             if (head == nullptr) {
                 head = node;
@@ -37,7 +37,7 @@ protected:
         return head;
     }
 
-    void destruct_list(List* head) {
+    void destroy_list(List* head) {
         List* node;
         while (head != nullptr) {
             node = head->next;
@@ -46,11 +46,12 @@ protected:
         }
     }
 
-    bool is_same(List* head, std::initializer_list<int> l) {
-        for (auto i = l.begin(); i < l.end(); ++i) {
+    // [RT] Yes, I know about gmock :)
+    bool is_same(List* head, std::initializer_list<int> v) {
+        for (auto item : v) {
             if (head == nullptr)
                 return false;
-            if (head->payload != *i)
+            if (head->payload != item)
                 return false;
             head = head->next;
         }
