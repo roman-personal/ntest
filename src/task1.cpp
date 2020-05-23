@@ -1,6 +1,7 @@
 #include "task1.h"
 #include <stdexcept>
 
+// [RT] Non efficient, but simple
 void calculate_primes(int n, int* primes) {
     if (n < 1)
         throw std::invalid_argument("N should be greater than zero");
