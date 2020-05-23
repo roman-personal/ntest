@@ -2,6 +2,12 @@
 #include "gtest/gtest.h"
 #include "task1.h"
 
+TEST(Task1Test, FirstPrime) {
+    int primes[1];
+    calculate_primes(1, primes);
+    EXPECT_THAT(primes, ::testing::ElementsAre(2));
+}
+
 TEST(Task1Test, NPrimes) {
     int primes[10];
     calculate_primes(10, primes);
