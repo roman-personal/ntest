@@ -19,6 +19,23 @@ protected:
         delete_node(tree);
         tree = nullptr;
     }
+
+    struct TreeNode* make_node(int tag, struct TreeNode* left, struct TreeNode* right) {
+        auto node = new TreeNode();
+        node->tag = tag;
+        node->leftChild = left;
+        node->rightChild = right;
+        return node;
+    }
+
+    void delete_node(struct TreeNode* node) {
+        if (node == nullptr)
+            return;
+        delete_node(node->leftChild);
+        delete_node(node->rightChild);
+        delete node;
+    }
+
 };
 
 TEST_F(Task5Test, EmptyTree) {

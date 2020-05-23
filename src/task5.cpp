@@ -40,19 +40,3 @@ std::pair<int, std::vector<TreePath>> calculate_tree_depth(struct TreeNode* tree
     walker.walk(tree);
     return std::make_pair(walker.max_depth, walker.paths);
 }
-
-struct TreeNode* make_node(int tag, struct TreeNode* left, struct TreeNode* right) {
-    auto node = new TreeNode();
-    node->tag = tag;
-    node->leftChild = left;
-    node->rightChild = right;
-    return node;
-}
-
-void delete_node(struct TreeNode* node) {
-    if (node == nullptr)
-        return;
-    delete_node(node->leftChild);
-    delete_node(node->rightChild);
-    delete node;
-}
