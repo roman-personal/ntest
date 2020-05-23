@@ -18,8 +18,9 @@ TEST(Task4Test, OneBitMSB) {
     EXPECT_EQ(min, 1);
     EXPECT_EQ(max, 0x80000000);
 }
+
 TEST(Task4Test, SeveralBits) {
-    auto [min, max] = get_min_max(0x0101a513);
+    auto [min, max] = get_min_max(0x0108a513);
     EXPECT_EQ(min, 0x000001ff);
     EXPECT_EQ(max, 0xff800000);
 }
