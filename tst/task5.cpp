@@ -35,7 +35,6 @@ protected:
         delete_node(node->rightChild);
         delete node;
     }
-
 };
 
 TEST_F(Task5Test, EmptyTree) {
@@ -72,7 +71,7 @@ TEST_F(Task5Test, SingleRightPath) {
     EXPECT_THAT(paths[0], ::testing::ElementsAre(1, 3));
 }
 
-TEST_F(Task5Test, LeftAndRightPath) {
+TEST_F(Task5Test, LeftAndRightPaths) {
     tree = make_node(1, 
         make_node(2, nullptr, nullptr), 
         make_node(3, nullptr, nullptr));

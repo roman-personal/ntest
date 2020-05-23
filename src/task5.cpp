@@ -32,7 +32,6 @@ struct TreeWalker {
     bool is_leaf(struct TreeNode* node) {
         return node->leftChild == nullptr && node->rightChild == nullptr;
     }
-
 };
 
 std::pair<int, std::vector<TreePath>> calculate_tree_depth(struct TreeNode* tree) {
