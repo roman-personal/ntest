@@ -10,6 +10,6 @@ int main(int, char**) {
     auto result = count_words_by_length(text);
     for (auto entry : result) {
         std::cout << entry.second << " words with " << entry.first <<
-            (entry.first > 1 ? "-letters" : "letter") << " length" << std::endl;
+            (entry.first > 1 ? "-letters" : "-letter") << " length\n";
     }
 }
