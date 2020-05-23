@@ -1,6 +1,4 @@
-#include "gmock/gmock.h"
 #include "gtest/gtest.h"
-#include <vector>
 #include "task3.h"
 
 class Task3Test : public ::testing::Test
