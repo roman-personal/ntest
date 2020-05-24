@@ -37,5 +37,5 @@ struct TreeWalker {
 std::pair<int, std::vector<TreePath>> calculate_tree_depth(struct TreeNode* tree) {
     TreeWalker walker;
     walker.walk(tree);
-    return std::make_pair(walker.max_depth, walker.paths);
+    return std::make_pair(walker.max_depth, std::move(walker.paths));
 }

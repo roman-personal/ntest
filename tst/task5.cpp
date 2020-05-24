@@ -47,7 +47,7 @@ TEST_F(Task5Test, RootOnly) {
     tree = make_node(1, nullptr, nullptr);
     auto [depth, paths] = calculate_tree_depth(tree);
     EXPECT_EQ(depth, 1);
-    EXPECT_EQ(paths.size(), 1);
+    ASSERT_EQ(paths.size(), 1);
     EXPECT_THAT(paths[0], ::testing::ElementsAre(1));
 }
 
@@ -57,7 +57,7 @@ TEST_F(Task5Test, SingleLeftPath) {
         nullptr);
     auto [depth, paths] = calculate_tree_depth(tree);
     EXPECT_EQ(depth, 2);
-    EXPECT_EQ(paths.size(), 1);
+    ASSERT_EQ(paths.size(), 1);
     EXPECT_THAT(paths[0], ::testing::ElementsAre(1, 2));
 }
 
@@ -67,7 +67,7 @@ TEST_F(Task5Test, SingleRightPath) {
         make_node(3, nullptr, nullptr));
     auto [depth, paths] = calculate_tree_depth(tree);
     EXPECT_EQ(depth, 2);
-    EXPECT_EQ(paths.size(), 1);
+    ASSERT_EQ(paths.size(), 1);
     EXPECT_THAT(paths[0], ::testing::ElementsAre(1, 3));
 }
 
@@ -77,7 +77,49 @@ TEST_F(Task5Test, LeftAndRightPaths) {
         make_node(3, nullptr, nullptr));
     auto [depth, paths] = calculate_tree_depth(tree);
     EXPECT_EQ(depth, 2);
-    EXPECT_EQ(paths.size(), 2);
+    ASSERT_EQ(paths.size(), 2);
     EXPECT_THAT(paths[0], ::testing::ElementsAre(1, 2));
     EXPECT_THAT(paths[1], ::testing::ElementsAre(1, 3));
+}
+
+TEST_F(Task5Test, LeftMaxPath) {
+    tree = make_node(1, 
+        make_node(2, 
+            make_node(4, nullptr, nullptr), 
+            nullptr), 
+        make_node(3, nullptr, nullptr));
+    auto [depth, paths] = calculate_tree_depth(tree);
+    EXPECT_EQ(depth, 3);
+    ASSERT_EQ(paths.size(), 1);
+    EXPECT_THAT(paths[0], ::testing::ElementsAre(1, 2, 4));
+}
+
+TEST_F(Task5Test, RightMaxPath) {
+    tree = make_node(1, 
+        make_node(2, nullptr, nullptr),
+        make_node(3, 
+            make_node(4, nullptr, nullptr), 
+            nullptr));
+    auto [depth, paths] = calculate_tree_depth(tree);
+    EXPECT_EQ(depth, 3);
+    ASSERT_EQ(paths.size(), 1);
+    EXPECT_THAT(paths[0], ::testing::ElementsAre(1, 3, 4));
+}
+
+TEST_F(Task5Test, AllPaths) {
+    tree = make_node(1, 
+        make_node(2, 
+            make_node(4, nullptr, nullptr), 
+            make_node(5, nullptr, nullptr)),
+        make_node(3, 
+            make_node(6, nullptr, nullptr), 
+            make_node(7, nullptr, nullptr))
+        );
+    auto [depth, paths] = calculate_tree_depth(tree);
+    EXPECT_EQ(depth, 3);
+    ASSERT_EQ(paths.size(), 4);
+    EXPECT_THAT(paths[0], ::testing::ElementsAre(1, 2, 4));
+    EXPECT_THAT(paths[1], ::testing::ElementsAre(1, 2, 5));
+    EXPECT_THAT(paths[2], ::testing::ElementsAre(1, 3, 6));
+    EXPECT_THAT(paths[3], ::testing::ElementsAre(1, 3, 7));
 }
