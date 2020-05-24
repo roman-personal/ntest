@@ -16,7 +16,7 @@
 
     mkdir build
     cd build
-    cmake
+    cmake ..
     make all
     ./tst/ntest_tst
     ./src/ntest_run
